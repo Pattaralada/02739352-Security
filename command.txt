@@ -1,0 +1,74 @@
+//เช็ค version ของ docker
+docker -v
+
+//ตรวจสอบว่า Docker สามารถทำงานได้อย่างถูกต้องหรือไม่ โดยการรันคอนเทนเนอร์ตัวอย่างชื่อว่า "hello-world"
+docker run hello-world
+
+//ตรวจสอบสถานะของคอนเทนเนอร์ทั้งหมดที่กำลังทำงานอยู่ในระบบของคุณ
+docker ps --all
+
+//ตรวจสอบรายชื่ออิมเมจทั้งหมดที่มีอยุ่ในระบบ
+docker images , docker image ls
+
+//
+docker run busybox
+
+//
+docker run busybox ping google.com
+
+//
+docker stop <container id or name>
+
+//
+docker pull <image_name>
+
+//
+docker create busybox ping google.com
+
+//
+docker start <container_id or name>
+
+//ตรวจสอบเฉพาะคอนเทนเนอร์ที่กำลังทำงานอยุ่ในระบบ
+docker ps
+
+//ลบคอนเทนเนอร์ทั้งหมด *ห้ามใช้*
+docker system prune
+
+//รับคอนเทนเนอร์ที่ใช้ภาพ nginx เป็นเวิร์ฟเวอร์ยอดนิยม โดยจะทำการเปิดพอร์ต 80 ของคอนเทนเนอร์ไปยังพอร์ต 8080 ของโฮสต์คุฯ
+docker run nginx
+
+//คำสั่งเข้าเวิร์ฟเวอร์
+docker exec -it <container_id or name> sh
+
+//
+docker exce -it <container_id or name> bash
+
+//
+cat index.html
+
+//
+docker run -d -p 9000:80 nginx
+
+//
+docker image inspect nginx
+
+//
+docker image rm <container_id or name>
+
+//
+docker pull wordpress
+
+//
+docker pull mysql:5.7
+
+//
+docker pull phpmyadmin/phpmyadmin
+
+//
+docker network create wordpress
+
+//
+dcoker network ls
+
+//
+docker run --network mysql -e --network wordpress -e MYSQL_ROOT
