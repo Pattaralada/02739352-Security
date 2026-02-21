@@ -10,22 +10,22 @@ docker ps --all
 //ตรวจสอบรายชื่ออิมเมจทั้งหมดที่มีอยุ่ในระบบ
 docker images , docker image ls
 
-//
+//รันคอนเทนเนอร์ busybox แบบสั้น ๆ
 docker run busybox
 
-//
+//รัน busybox เพื่อ ping ไปที่ google.com
 docker run busybox ping google.com
 
-//
+//หยุดคอนเทนเนอร์
 docker stop <container id or name>
 
-//
+//ดาวน์โหลดอิมเมจจาก Docker Hub
 docker pull <image_name>
 
-//
+//สร้างคอนเทนเนอร์แต่ยังไม่เริ่มทำงาน
 docker create busybox ping google.com
 
-//
+//เริ่มทำงานคอนเทนเนอร์ที่ถูกสร้างไว้
 docker start <container_id or name>
 
 //ตรวจสอบเฉพาะคอนเทนเนอร์ที่กำลังทำงานอยุ่ในระบบ
@@ -37,38 +37,41 @@ docker system prune
 //รับคอนเทนเนอร์ที่ใช้ภาพ nginx เป็นเวิร์ฟเวอร์ยอดนิยม โดยจะทำการเปิดพอร์ต 80 ของคอนเทนเนอร์ไปยังพอร์ต 8080 ของโฮสต์คุฯ
 docker run nginx
 
-//คำสั่งเข้าเวิร์ฟเวอร์
+//คำสั่งเข้าเวิร์ฟเวอร์ แบบภายใน
 docker exec -it <container_id or name> sh
 
-//
+//เข้า shell แบบ bash (ต้องมี bash ใน image)
 docker exce -it <container_id or name> bash
 
-//
+//อ่านไฟล์ index.html ภายในคอนเทนเนอร์
 cat index.html
 
-//
+//รัน nginx แบบ background และ map port
 docker run -d -p 9000:80 nginx
 
-//
+//ดูรายละเอียดของ Docker Image
 docker image inspect nginx
 
-//
+//ลบ Docker Image
 docker image rm <container_id or name>
 
-//
+//ดาวน์โหลด WordPress image
 docker pull wordpress
 
-//
+//ดาวน์โหลด MySQL เวอร์ชัน 5.7
 docker pull mysql:5.7
 
-//
+//ดาวน์โหลด phpMyAdmin
 docker pull phpmyadmin/phpmyadmin
 
-//
+//สร้าง Docker Network
 docker network create wordpress
 
-//
+//แสดงรายการ Docker Network
 dcoker network ls
 
-//
+//รัน MySQL ใน network wordpress (ตัวอย่างที่ถูกต้อง)
 docker run --network mysql -e --network wordpress -e MYSQL_ROOT
+
+//รัน phpMyAdmin เป็นคอนเทนเนอร์ เพื่อจัดการฐานข้อมูล MySQL ผ่านเว็บ
+docker run --name pma --network wordpress -p 8888:80 -e PMA_ARBITRARY=1 -d phpmyadmin/phpmyadmin
